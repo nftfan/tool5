@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +20,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 20px;
+    gap: 0px;
     padding: 20px;
   }
 
   #map {
-    width: 750px;
+    width: 1000px;
     height: 700px;
     border-radius: 7px;
     overflow: hidden;
@@ -41,10 +42,10 @@
     max-width: 350px;
     max-height: 700px;
     overflow: auto;
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow for contrast */
+   
+    padding: 10px;
+    border-radius: 5px;
+    
   }
 
   .population-info {
@@ -78,77 +79,86 @@
 
   .population-info input[type="number"]:focus {
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
+    
   }
 
-  .table {
-    width: 350px;
-    height: 700px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    border-collapse: collapse;
-    background-color: #1e1e1e;
-    color: #f0f0f0;
-    border: 1px solid #555;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow for contrast */
-    padding: 20px;
-  }
+ .table {
+  width: 1000px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  color: #f0f0f0;
+  border: 0px solid #555;
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  top: 740px; /* Moves the table 740px down from the top */
+  left: 10px; /* Adjust the value to move the table to the left side */
+}
 
-  .table-column {
-    background-color: #333;
-    border: 1px solid #555;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    padding: 15px;
-  }
+.table-column {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding: 15px;
+}
 
-  .table-row {
-    display: table-row;
-  }
+.table-row {
+  display: table-row;
+}
 
-  .table-cell {
-    display: table-cell;
-    border: 1px solid #555;
-    padding: 10px;
-    color: #f0f0f0;
-  }
+.table-cell {
+  display: table-cell;
+  border: 1px solid #555;
+  padding: 10px;
+  color: #f0f0f0;
+}
 
-  .table-cell.bold {
-    font-weight: bold;
-    font-size: 16px;
-  }
+.table-cell.bold {
+  font-weight: bold;
+  font-size: 16px;
+}
 
-  .table-cell.green {
-    color: #4caf50;
-  }
+.table-cell.green {
+  color: #4caf50;
+}
 
-  .table-cell.red {
-    color: #f44336;
-  }
+.table-cell.red {
+  color: #f44336;
+}
 
-  .table-cell.blue {
-    color: #2196f3;
-  }
+.table-cell.blue {
+  color: #2196f3;
+}
+
 
   .population-info button {
-    background-color: #f3eac6;
-    border: none;
-    color: #000000;
-    padding: 15px 20px;
-    text-align: center;
-    font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 8px;
-    transition-duration: 0.4s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+  background: linear-gradient(135deg, #f3eac6, #c5b358);
+  border: none;
+  color: #000000;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-  .population-info button:hover {
-    background-color: #45a049;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
+.population-info button:hover {
+  background: linear-gradient(135deg, #45a049, #3b8d40);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.population-info button:active {
+  background: linear-gradient(135deg, #3b8d40, #2e7034);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+}
+
 
   .search-container {
     position: absolute;
@@ -161,9 +171,10 @@
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    margin-right: 10px;
+	margin-top: 20px;
+    margin-left: 30px;
     font-size: 14px;
-    background-color: #1e1e1e;
+    background-color: #ffffff;
     color: #f0f0f0;
   }
 
@@ -445,8 +456,9 @@
         }
       });
       var sortedStreets = Array.from(streets).sort();
-      document.getElementById('street-list').innerHTML = "<strong>List of Streets:</strong><br/>" + sortedStreets.join("<br/>");
-      highlightStreets(drawnLayer); // Highlight streets after updating street list
+document.getElementById('street-list').innerHTML = "<strong style='font-size: 10px;'>List of Streets:</strong><br/><span style='font-size: 10px;'>" + sortedStreets.join("<br/>") + "</span>";
+highlightStreets(drawnLayer); // Highlight streets after updating street list
+
     })
     .catch(error => console.error('Error:', error));
   }
